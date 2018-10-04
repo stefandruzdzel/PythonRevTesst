@@ -1,0 +1,90 @@
+
+import numpy as np
+import pandas as pd
+import pickle
+
+def pricingSystem(period,bookings,fares,startingFare):
+    if sum(bookings) < 60:
+        fare = startingFare
+    elif sum(bookings) < 70:
+        fare = startingFare + 5
+    elif sum(bookings) < 80:
+        fare = startingFare + 10
+    elif sum(bookings) < 90:
+        fare = startingFare + 20
+    else:
+        fare = startingFare + 50
+    return fare
+startingFares = pickle.load(open('startingFares','rb'))   
+bookingHistory = pickle.load(open('bookingHistory','rb'))   
+fareHistory = pickle.load(open('fareHistory','rb')) 
+
+"""
+Python Test
+
+Overview:
+You are the Revenue Optimization Analyst for a brand new LCC
+So far, the airline has been using 4 very simple pricing strategies, which can be seen in the function "pricingSystem"
+the data:
+startingFares: an array showing the fare the 1000 flights began at
+bookingHistory: number of bookings in each period
+There are 10 periods, 0 is when the flight is first on sale, 9 is the last period before departure
+ Elasticity and expected number of bookings change throughout the periods
+Each flight can fit a max of 100 passengers
+fareHistory: the fare that was charged
+
+
+Python functions that would be useful to brush up on for this test:
+For loops
+If statements
+Numpy: sum, mean, cumsum, zeros
+Working with arrays: indexing, slicing, boolean indexing
+
+
+
+"""
+def question0(bookingHistory):
+    """
+    example question
+    What percent of flights sold out?
+    Answer can be a decimal or a percentage
+    """
+    answer = float(sum(np.sum(bookingHistory,1)==100.0)) / bookingHistory.shape[0]
+    return answer
+
+def question1():
+    """
+    Easy
+    Which pricing strategy was the best?
+    Answer can be a number or text
+    """
+    return answer
+def question2():
+    """
+    Easy
+    Assuming the average passenger has an additional $30 in ancillary revenue which pricing strategy is the best?
+    Answer can be a number or text
+    """
+    return answer
+def question3():
+    """
+    Medium
+    Without performing an in depth analysis (That will happen in question 5)
+    What recommendations would you provide to the pricing team in order to increase booking revenue?
+    Answer should be text
+    """
+    return answer
+def question4():
+    """
+    Hard
+    What is the price elasticity of demand at each period?
+    Answer should be an array of floats
+    """
+    return answer
+def question5():
+    """
+    Very Hard
+    Design a pricing system that improves revenue above the best rule you found in 2
+    To answer turn this function into something that outputs fare, like "pricingSystem" above.
+    """
+    return fare
